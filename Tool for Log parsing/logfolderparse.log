@@ -1,0 +1,24 @@
+Jul 27, 2020 10:24:06 AM com.FolderParser main
+INFO: program started to execute
+Jul 27, 2020 10:24:06 AM com.IteratorforLogFilesinFolder <init>
+INFO: Class IteratorforLogFilesinFolder instance is constructed
+Jul 27, 2020 10:24:13 AM com.FolderParser main
+INFO: D:\dc is provided by user to check and calling Filelist method to retrieve files in directory
+Jul 27, 2020 10:24:13 AM com.FolderParser main
+INFO: File lists
+Jul 27, 2020 10:24:13 AM com.IteratorforLogFilesinFolder listLogFiles
+INFO: Provided folder name is D:\dc  Provided file format to retrive is .txt
+Jul 27, 2020 10:24:13 AM com.IteratorforLogFilesinFolder listLogFiles
+WARNING: Exception occurred
+java.lang.NullPointerException
+	at com.IteratorforLogFilesinFolder.listLogFiles(IteratorforLogFilesinFolder.java:39)
+	at com.FolderParser.main(FolderParser.java:63)
+
+Jul 27, 2020 10:24:13 AM com.IteratorforLogFilesinFolder listLogFiles
+INFO: Returning from IteratorforLogFilesinFolder class
+Jul 27, 2020 10:24:13 AM com.FolderParser main
+INFO: Files in subdiretory retrieved
+Jul 27, 2020 10:24:13 AM com.FolderParser main
+WARNING: Folder D:\dc does not contain any files
+Jul 27, 2020 10:24:13 AM com.FolderParser main
+INFO: Program execution completed
