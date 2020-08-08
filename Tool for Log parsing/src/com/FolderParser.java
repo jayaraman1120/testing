@@ -68,7 +68,7 @@ public class FolderParser {
 		JSONObject j = new JSONObject();
 		for (String f : filelist) {
 			try {
-				j.put(f, exceptionCount.fileExceptioncheck(f));
+				j.put(f, exceptionCount.fileExceptionCount(f));
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				logger.log(Level.WARNING,"following error occurred",e);
