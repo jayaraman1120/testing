@@ -48,8 +48,8 @@ public class FolderParser {
 			logger.log(Level.INFO,"Exception",e);
 		}
 		logger.info("program started to execute");
-		IteratorforLogFilesinFolder fileIterator = new IteratorforLogFilesinFolder();
-		ExceptionCount exceptionCount = new ExceptionCount();
+		IteratorforLogFilesinFolder fileIterator = new IteratorforLogFilesinFolder(); //Creating instance of class for checking folder exist and file iterator
+		ExceptionCount exceptionCount = new ExceptionCount();//Creating instance of class for exception count in file level and aggregated
 		Scanner readinput = new Scanner(System.in);
 		System.out.println("Enter the folder name to check");//expecting user to provide folder name
 		String folderName = readinput.nextLine();
@@ -60,7 +60,7 @@ public class FolderParser {
 		System.out.println("Enter the File format to check");
 		String fileFormat = readinput.nextLine();
 		readinput.close();
-		logger.info(folderName+" is provided by user to check and calling Filelist method to retrieve files in directory");
+		logger.info(folderName+" is provided by user. "+fileFormat+" is the user provided fileformat and calling Filelist method to retrieve files in directory");
 		logger.info("File lists");
 		List <String> filelist = fileIterator.listLogFiles(folderName, fileFormat);
 		logger.info("Files in subdiretory retrieved");
@@ -69,12 +69,12 @@ public class FolderParser {
 		}else {
 		JSONObject individualFilejson = new JSONObject();
 		List<HashMap<String, Integer>> list = new ArrayList<HashMap<String, Integer>>();
-		for (String f : filelist) {
+		for (String file : filelist) {
 			try {
-				//To get relative path from exectution / given folder
-				String filename = (new File(f).getAbsolutePath().replace(new File(folderName).getAbsolutePath(), "")).replaceFirst("\\\\","");
+				//To get relative path from execution / given folder
+				String filename = (new File(file).getAbsolutePath().replace(new File(folderName).getAbsolutePath(), "")).replaceFirst("\\\\","");
 				@SuppressWarnings("rawtypes")
-				HashMap hashmap= new HashMap(exceptionCount.fileExceptionCount(f));
+				HashMap hashmap= new HashMap(exceptionCount.fileExceptionCount(file));
 				list.add(hashmap);
 				individualFilejson.put(filename, hashmap);
 			} catch (JSONException e) {
