@@ -1,8 +1,10 @@
 package com;
 
 
+import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.ConsoleHandler;
@@ -11,7 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -53,11 +54,12 @@ public class FolderParser {
 		System.out.println("Enter the folder name to check");//expecting user to provide folder name
 		String folderName = readinput.nextLine();
 		if (!fileIterator.checkFolderexists(folderName)) {
-			logger.warning("Given folder "+folderName+" does not exist. Exiting from program");
+			logger.warning("Given folder "+folderName+" does not exist or it is not a directory. Exiting from program");
 			System.exit(1);
 		}
 		System.out.println("Enter the File format to check");
 		String fileFormat = readinput.nextLine();
+		readinput.close();
 		logger.info(folderName+" is provided by user to check and calling Filelist method to retrieve files in directory");
 		logger.info("File lists");
 		List <String> filelist = fileIterator.listLogFiles(folderName, fileFormat);
@@ -65,29 +67,37 @@ public class FolderParser {
 		if (filelist.isEmpty()) {
 			logger.warning("Folder "+folderName+" does not contain any files");
 		}else {
-		JSONObject j = new JSONObject();
+		JSONObject individualFilejson = new JSONObject();
+		List<HashMap<String, Integer>> list = new ArrayList<HashMap<String, Integer>>();
 		for (String f : filelist) {
 			try {
-				j.put(f, exceptionCount.fileExceptionCount(f));
+				//To get relative path from exectution / given folder
+				String filename = (new File(f).getAbsolutePath().replace(new File(folderName).getAbsolutePath(), "")).replaceFirst("\\\\","");
+				@SuppressWarnings("rawtypes")
+				HashMap hashmap= new HashMap(exceptionCount.fileExceptionCount(f));
+				list.add(hashmap);
+				individualFilejson.put(filename, hashmap);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				logger.log(Level.WARNING,"following error occurred",e);
 			}
 		}
+		JSONObject folderexccount = new JSONObject();
 		FileWriter fileoutput = null;
 		try {
+			folderexccount.put("Aggregated Exception Count in folder", exceptionCount.folderExceptionCount(list));			
+			folderexccount.put("Exception count at individual file", individualFilejson);
 			fileoutput = new FileWriter("fileoutput.json");
-			fileoutput.write(j.toString());
+			fileoutput.write(folderexccount.toString());
 			fileoutput.close();
 			logger.info("Output is written to fileoutput.json");
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			logger.log(Level.WARNING,"following error occurred",e);
 		}
 		}
 		logger.info("Program execution completed");
 		System.out.println("Program execution completed");
-		readinput.close();
 	}
 }
 	

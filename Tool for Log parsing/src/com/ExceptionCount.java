@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,12 +21,14 @@ public class ExceptionCount {
 	 * 
 	 */
 	private final static Logger logger = Logger.getLogger(FolderParser.class.getName());
+	
 	public ExceptionCount() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	HashMap <String, Integer> fileExceptionCount(String f) {
 		HashMap <String, Integer> exceptioncount = new HashMap<>();
-		int /*overallCount =0,*/arithemeticexc = 0,nullpointerexc=0,numberformatexc=0,arrindexoutofexc =0;
+		int arithemeticexc = 0,nullpointerexc=0,numberformatexc=0,arrindexoutofexc =0;
 		int ioexc =0, sqlexc=0,classnotfoundexc=0,illegalargexc=0,arraystoreexc=0,indexoutofboundexc=0;
 		int  securityexc =0, stringindexoutexc=0,unsupportedopexc=0,instationexc=0,interruptedexc=0,filenotfoundexc=0,unidenfiedexc=0;
 		try{
@@ -98,5 +101,51 @@ public class ExceptionCount {
 		}
 		return exceptioncount;
 	}
-
+	
+	HashMap <String, Integer> folderExceptionCount (List<HashMap <String,Integer>> list) {
+		HashMap <String, Integer> folderLevelExcCount = new HashMap <String,Integer>();
+		int arithemeticexc = 0,nullpointerexc=0,numberformatexc=0,arrindexoutofexc =0;
+		int ioexc =0, sqlexc=0,classnotfoundexc=0,illegalargexc=0,arraystoreexc=0,indexoutofboundexc=0;
+		int  securityexc =0, stringindexoutexc=0,unsupportedopexc=0,instationexc=0,interruptedexc=0,filenotfoundexc=0,unidenfiedexc=0;
+		
+		for (HashMap<String,Integer> map : list) {
+			arithemeticexc = arithemeticexc + map.get("Arithmetic Exception");
+			nullpointerexc = nullpointerexc + map.get("Null Pointer Exception");
+			numberformatexc = numberformatexc + map.get("Number Format Exception");
+			arrindexoutofexc = arrindexoutofexc + map.get("Array index out of bounds Exception");
+			ioexc = ioexc + map.get("IO Exception");
+			sqlexc = sqlexc + map.get("Sql Exception");
+			classnotfoundexc = classnotfoundexc + map.get("Class not Found Exception");
+			illegalargexc = illegalargexc + map.get("Illegal Argument Exception");
+			arraystoreexc = arraystoreexc + map.get("Array store Exception");
+			indexoutofboundexc = indexoutofboundexc + map.get("Index out of bounds Exception");
+			securityexc = securityexc + map.get("Security Exception");
+			stringindexoutexc = stringindexoutexc + map.get("String Index out of Bound Exception");
+			unsupportedopexc = unsupportedopexc + map.get("Unsupported Operation Exception");
+			instationexc = instationexc + map.get("Instantiation Exception");
+			interruptedexc = interruptedexc + map.get("Interrupted Exception");
+			filenotfoundexc = filenotfoundexc + map.get("File not Found Exception");
+			unidenfiedexc = unidenfiedexc + map.get("Unidentified Exception");
+		}
+		
+		folderLevelExcCount.put("Arithmetic Exception", arithemeticexc);
+		folderLevelExcCount.put("Null Pointer Exception", nullpointerexc);
+		folderLevelExcCount.put("Number Format Exception", numberformatexc);
+		folderLevelExcCount.put("Array index out of bounds Exception", arrindexoutofexc);
+		folderLevelExcCount.put("IO Exception", ioexc);
+		folderLevelExcCount.put("Sql Exception", sqlexc);
+		folderLevelExcCount.put("Class not Found Exception", classnotfoundexc);
+		folderLevelExcCount.put("Illegal Argument Exception", illegalargexc);
+		folderLevelExcCount.put("Array store Exception", arraystoreexc);
+		folderLevelExcCount.put("Index out of bounds Exception", indexoutofboundexc);
+		folderLevelExcCount.put("Security Exception", securityexc);
+		folderLevelExcCount.put("String Index out of Bound Exception", stringindexoutexc);
+		folderLevelExcCount.put("Unsupported Operation Exception", unsupportedopexc);
+		folderLevelExcCount.put("Instantiation Exception", instationexc);
+		folderLevelExcCount.put("Interrupted Exception", interruptedexc);
+		folderLevelExcCount.put("File not Found Exception", filenotfoundexc);
+		folderLevelExcCount.put("Unidentified Exception", unidenfiedexc);
+		
+		return folderLevelExcCount;
+	}
 }

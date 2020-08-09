@@ -1,24 +1,28 @@
-Jul 27, 2020 10:24:06 AM com.FolderParser main
+Aug 09, 2020 11:16:19 AM com.FolderParser main
 INFO: program started to execute
-Jul 27, 2020 10:24:06 AM com.IteratorforLogFilesinFolder <init>
+Aug 09, 2020 11:16:19 AM com.IteratorforLogFilesinFolder <init>
 INFO: Class IteratorforLogFilesinFolder instance is constructed
-Jul 27, 2020 10:24:13 AM com.FolderParser main
-INFO: D:\dc is provided by user to check and calling Filelist method to retrieve files in directory
-Jul 27, 2020 10:24:13 AM com.FolderParser main
+Aug 09, 2020 11:16:25 AM com.FolderParser main
+INFO: D:\\Doc is provided by user to check and calling Filelist method to retrieve files in directory
+Aug 09, 2020 11:16:25 AM com.FolderParser main
 INFO: File lists
-Jul 27, 2020 10:24:13 AM com.IteratorforLogFilesinFolder listLogFiles
-INFO: Provided folder name is D:\dc  Provided file format to retrive is .txt
-Jul 27, 2020 10:24:13 AM com.IteratorforLogFilesinFolder listLogFiles
-WARNING: Exception occurred
-java.lang.NullPointerException
-	at com.IteratorforLogFilesinFolder.listLogFiles(IteratorforLogFilesinFolder.java:39)
-	at com.FolderParser.main(FolderParser.java:63)
-
-Jul 27, 2020 10:24:13 AM com.IteratorforLogFilesinFolder listLogFiles
+Aug 09, 2020 11:16:25 AM com.IteratorforLogFilesinFolder listLogFiles
+INFO: Provided folder name is D:\\Doc  Provided file format to retrive is .log
+Aug 09, 2020 11:16:25 AM com.IteratorforLogFilesinFolder$1 accept
+INFO: iterated file is dcondemandrequest -1.log
+Aug 09, 2020 11:16:25 AM com.IteratorforLogFilesinFolder$1 accept
+INFO: iterated file is Inner folder
+Aug 09, 2020 11:16:25 AM com.IteratorforLogFilesinFolder listLogFiles
+INFO: Provided folder name is D:\Doc\Inner folder  Provided file format to retrive is .log
+Aug 09, 2020 11:16:25 AM com.IteratorforLogFilesinFolder$1 accept
+INFO: iterated file is dcondemandrequest.log
+Aug 09, 2020 11:16:25 AM com.IteratorforLogFilesinFolder listLogFiles
 INFO: Returning from IteratorforLogFilesinFolder class
-Jul 27, 2020 10:24:13 AM com.FolderParser main
+Aug 09, 2020 11:16:25 AM com.IteratorforLogFilesinFolder listLogFiles
+INFO: Returning from IteratorforLogFilesinFolder class
+Aug 09, 2020 11:16:25 AM com.FolderParser main
 INFO: Files in subdiretory retrieved
-Jul 27, 2020 10:24:13 AM com.FolderParser main
-WARNING: Folder D:\dc does not contain any files
-Jul 27, 2020 10:24:13 AM com.FolderParser main
+Aug 09, 2020 11:16:25 AM com.FolderParser main
+INFO: Output is written to fileoutput.json
+Aug 09, 2020 11:16:25 AM com.FolderParser main
 INFO: Program execution completed

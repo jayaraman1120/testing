@@ -14,7 +14,7 @@ public class IteratorforLogFilesinFolder {
 		logger.info("Class IteratorforLogFilesinFolder instance is constructed");
 	}
 	boolean checkFolderexists(String filename) {
-		if (new File(filename).exists()) return true;
+		if (new File(filename).exists() && new File(filename).isDirectory()) return true;
 		return false;
 	}
 	
