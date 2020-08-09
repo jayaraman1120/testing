@@ -24,20 +24,25 @@ public class ExceptionCount {
 	
 	public ExceptionCount() {
 		// TODO Auto-generated constructor stub
+		logger.info("Exception count class is initializing");
 	}
 	
+	/*This method receives file as input and 
+	 * Calculate exception count for each type and return as hashmap
+	 */
 	HashMap <String, Integer> fileExceptionCount(String f) {
 		HashMap <String, Integer> exceptioncount = new HashMap<>();
-		int arithemeticexc = 0,nullpointerexc=0,numberformatexc=0,arrindexoutofexc =0;
+		int arithemeticexc = 0,nullpointerexc=0,numberformatexc=0,arrindexoutofexc =0;//Variable to store exception count for each exception type
 		int ioexc =0, sqlexc=0,classnotfoundexc=0,illegalargexc=0,arraystoreexc=0,indexoutofboundexc=0;
 		int  securityexc =0, stringindexoutexc=0,unsupportedopexc=0,instationexc=0,interruptedexc=0,filenotfoundexc=0,unidenfiedexc=0;
 		try{
-		FileReader File = new FileReader(f);
-		BufferedReader br = new BufferedReader(File);
+		FileReader file = new FileReader(f);
+		BufferedReader br = new BufferedReader(file);
 		String line;
+		
 		while((line = br.readLine())!= null) {
 			if (line.toLowerCase().indexOf("exception")!= -1){
-				//overallCount++;
+				//For each line , If exception text present, it allows to check for type of exception
 				if(line.toLowerCase().indexOf("arithmeticexception")!= -1) {
 					arithemeticexc++;
 				}else if (line.toLowerCase().indexOf("nullpointerexception")!= -1){
@@ -70,14 +75,14 @@ public class ExceptionCount {
 					interruptedexc++;
 				}else if (line.toLowerCase().indexOf("filenotfoundexception")!= -1){
 					filenotfoundexc++;
-				}else {
+				}else { //If detected exception does not fall under above, this is categorized to unidentified Exception
 					unidenfiedexc++;
 				}
 			}
 		}
-		//logger.info(f+" is read and number of exceptions "+overallCount);
 		br.close();
-		File.close();
+		file.close();
+		//writing calculated exception type to Hashmap
 		exceptioncount.put("Arithmetic Exception", arithemeticexc);
 		exceptioncount.put("Null Pointer Exception", nullpointerexc);
 		exceptioncount.put("Number Format Exception", numberformatexc);
@@ -99,9 +104,13 @@ public class ExceptionCount {
 		}catch(IOException e) {
 			logger.log(Level.WARNING,"Error occurred",e);
 		}
+		logger.log(Level.INFO,f+" file is gone through to calculate exception count and returning exception count hashmap to main class");
 		return exceptioncount;
 	}
 	
+	/* This method gets hashmap of exception count of each file as argument and aggregate
+	 * each type of exception for overall given folder and return as hashmap
+	 */
 	HashMap <String, Integer> folderExceptionCount (List<HashMap <String,Integer>> list) {
 		HashMap <String, Integer> folderLevelExcCount = new HashMap <String,Integer>();
 		int arithemeticexc = 0,nullpointerexc=0,numberformatexc=0,arrindexoutofexc =0;
@@ -146,6 +155,7 @@ public class ExceptionCount {
 		folderLevelExcCount.put("File not Found Exception", filenotfoundexc);
 		folderLevelExcCount.put("Unidentified Exception", unidenfiedexc);
 		
+		logger.info("Returning overall exception count at folder level ");
 		return folderLevelExcCount;
 	}
 }

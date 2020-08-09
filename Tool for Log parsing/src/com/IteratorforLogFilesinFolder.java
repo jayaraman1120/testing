@@ -13,6 +13,8 @@ public class IteratorforLogFilesinFolder {
 		// TODO Auto-generated constructor stub
 		logger.info("Class IteratorforLogFilesinFolder instance is constructed");
 	}
+	
+	//This method checks whether given path is folder and exists in location
 	boolean checkFolderexists(String filename) {
 		if (new File(filename).exists() && new File(filename).isDirectory()) return true;
 		return false;
@@ -22,8 +24,9 @@ public class IteratorforLogFilesinFolder {
 		logger.info("Provided folder name is "+file+"  Provided file format to retrive is "+fileFormat);
 		File inputFolder = new File(file);
 		List <String> fileListString = new ArrayList<String>();
-		try { FileFilter filetypefilter = new FileFilter() {
-
+		try { 
+			//Creating filter to allow only provided file format files and sub directories
+			FileFilter filetypefilter = new FileFilter() {
 			@Override
 			public boolean accept(File pathname) {
 				// TODO Auto-generated method stub

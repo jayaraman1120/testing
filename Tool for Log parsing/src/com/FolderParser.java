@@ -50,20 +50,25 @@ public class FolderParser {
 		logger.info("program started to execute");
 		IteratorforLogFilesinFolder fileIterator = new IteratorforLogFilesinFolder(); //Creating instance of class for checking folder exist and file iterator
 		ExceptionCount exceptionCount = new ExceptionCount();//Creating instance of class for exception count in file level and aggregated
+		
 		Scanner readinput = new Scanner(System.in);
 		System.out.println("Enter the folder name to check");//expecting user to provide folder name
 		String folderName = readinput.nextLine();
+		//Checking given is exists and it is folder
 		if (!fileIterator.checkFolderexists(folderName)) {
 			logger.warning("Given folder "+folderName+" does not exist or it is not a directory. Exiting from program");
 			System.exit(1);
 		}
+		logger.info("Given folder is exists and it is folder.. Proceeding");
 		System.out.println("Enter the File format to check");
 		String fileFormat = readinput.nextLine();
 		readinput.close();
+		
 		logger.info(folderName+" is provided by user. "+fileFormat+" is the user provided fileformat and calling Filelist method to retrieve files in directory");
 		logger.info("File lists");
 		List <String> filelist = fileIterator.listLogFiles(folderName, fileFormat);
-		logger.info("Files in subdiretory retrieved");
+		logger.info("Files in directory retrieved");
+		//Checking whether given folder contains any files, if yes proceed or terminate
 		if (filelist.isEmpty()) {
 			logger.warning("Folder "+folderName+" does not contain any files");
 		}else {
@@ -77,6 +82,7 @@ public class FolderParser {
 				HashMap hashmap= new HashMap(exceptionCount.fileExceptionCount(file));
 				list.add(hashmap);
 				individualFilejson.put(filename, hashmap);
+				logger.info("Writing exception count to json for "+filename);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				logger.log(Level.WARNING,"following error occurred",e);
@@ -85,8 +91,10 @@ public class FolderParser {
 		JSONObject folderexccount = new JSONObject();
 		FileWriter fileoutput = null;
 		try {
+			logger.info("Calling for overall exception count at folder level ");
 			folderexccount.put("Aggregated Exception Count in folder", exceptionCount.folderExceptionCount(list));			
 			folderexccount.put("Exception count at individual file", individualFilejson);
+			logger.info("Filewriter is created to write to fileoutput.json");
 			fileoutput = new FileWriter("fileoutput.json");
 			fileoutput.write(folderexccount.toString());
 			fileoutput.close();
