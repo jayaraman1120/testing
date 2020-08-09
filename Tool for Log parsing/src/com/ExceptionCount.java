@@ -82,7 +82,7 @@ public class ExceptionCount {
 		}
 		br.close();
 		file.close();
-		//writing calculated exception type to Hashmap
+		//writing calculated exception type to HashMap
 		exceptioncount.put("Arithmetic Exception", arithemeticexc);
 		exceptioncount.put("Null Pointer Exception", nullpointerexc);
 		exceptioncount.put("Number Format Exception", numberformatexc);
