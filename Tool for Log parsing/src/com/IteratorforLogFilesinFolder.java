@@ -36,7 +36,6 @@ public class IteratorforLogFilesinFolder {
 				}
 				return false;
 			}
-			
 		};
 		File fileList[] = inputFolder.listFiles(filetypefilter);
 		for (File individualFile: fileList) {

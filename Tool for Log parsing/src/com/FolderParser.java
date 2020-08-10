@@ -93,7 +93,10 @@ public class FolderParser {
 		try {
 			logger.info("Calling for overall exception count at folder level ");
 			folderexccount.put("Aggregated Exception Count in folder", exceptionCount.folderExceptionCount(list));			
-			folderexccount.put("Exception count at individual file", individualFilejson);
+			folderexccount.put("Exception count at individual file", individualFilejson); 
+			/*Printed Zero count for Exception also. Since removing Zero exception type , Create inconsistent view.
+			 * To get new Hashmap, New utility will iterate over this and return new hashmap which has only non zero values
+			 */
 			logger.info("Filewriter is created to write to fileoutput.json");
 			fileoutput = new FileWriter("fileoutput.json");
 			fileoutput.write(folderexccount.toString());
