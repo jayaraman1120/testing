@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlAccessorType;
-@XmlRootElement
+//@XmlRootElement
 //@XmlAccessorType(XmlAccessType.FIELD)
 public class Message {
 	
