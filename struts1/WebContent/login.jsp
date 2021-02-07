@@ -8,8 +8,8 @@
 <title>Login Page</title>
 </head>
 <body>
-<s:form action="login">
-<s:textfield lable ="UserName" key ="username"/>
+<s:form action="/tutorials/login">
+<s:textfield label ="UserName" key ="username"/>
 <s:password label="Password" key ="password"/>
 <s:submit/>
 </s:form>

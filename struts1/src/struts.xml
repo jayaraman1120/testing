@@ -7,9 +7,12 @@
 <result name ="success">/success.jsp</result>
 <result name="failure">/error.jsp</result>
 </action>
-<action name = "login" class = "org.struts.TutorialAction" method ="login">
-<result name ="success">success.jsp</result>
-<result name="failure">error.jsp</result>
+<action name = "login" class = "org.struts.LoginAction">
+<result name ="success">/SearchForm.jsp</result>
+<result name="error">/error.jsp</result>
+<result name="input">/login.jsp</result>
 </action>
 </package>
+
+<include file="strutsfile.xml"/>
 </struts>

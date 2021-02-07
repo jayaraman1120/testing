@@ -3,9 +3,12 @@ package org.struts.businessservice;
 public class TutorialFinderService {
 
 	public String languageFinder(String language) {
-		if ("jaya".equals(language)) {
+		if (language != null) {
+		if (language.equals("java")) {
 		return "Language Available" + language;
-		} else {
+		} 
+		return language + "  language not supported";
+		}else {
 			return "language not supported";
 		}
 	}

@@ -8,7 +8,7 @@
 <title>Search Form</title>
 </head>
 <body>
-<s:form action="getTutorial">
+<s:form action="/tutorials/getTutorial">
 <s:textfield key ="language">
 <s:submit/>
 </s:textfield>
