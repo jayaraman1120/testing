@@ -2,7 +2,7 @@ def main():
     func()
 
 def func():
-    print ("Hello, World",end=" ")
+    print ("Hello, World",end=" \n")
     print ("Hello, World",end=" ")
 
 list = [1,2,3,4,5]
